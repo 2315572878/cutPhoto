@@ -8,6 +8,7 @@ class CutPhotoApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

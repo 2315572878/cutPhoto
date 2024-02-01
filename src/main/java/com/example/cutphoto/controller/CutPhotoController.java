@@ -1,22 +1,30 @@
 package com.example.cutphoto.controller;
 
 import cn.hutool.core.util.IdUtil;
+import com.example.cutphoto.domain.IpRegionCommon;
+import com.example.cutphoto.utils.Ip2RegionUtils;
 import com.example.cutphoto.utils.JSchUtils;
+import com.example.cutphoto.utils.NetUtils;
 import com.jcraft.jsch.ChannelSftp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.lionsoul.ip2region.xdb.Searcher;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: tao
@@ -65,6 +73,29 @@ public class CutPhotoController {
 
     }
 
+    @GetMapping("/ip")
+    @ApiOperation("获取ip")
+    public void getIp(HttpServletRequest request) {
+
+
+    }
+
+    public static void main(String[] args) {
+        String ip;
+        for (int i = 0; i <= 255; i++) {
+            for (int j = 0; j <= 255; j++) {
+                for (int k = 0; k <= 255; k++) {
+                    for (int l = 0; l <= 255; l++) {
+                        ip = i + "." + j + "." + k + "." + l;
+                        System.out.println(ip);
+                        IpRegionCommon ipRegion = Ip2RegionUtils.getIpRegion(ip);
+                        System.out.println("ipRegion = " + ipRegion);
+                    }
+                }
+            }
+        }
+
+    }
 
 
 }
